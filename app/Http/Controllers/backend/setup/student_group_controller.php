@@ -66,4 +66,17 @@ class student_group_controller extends Controller
 
         return redirect()->route('student.group.view')->with($notification);
     }
+
+    public function delete_group($id){
+        $user = student_group::find($id);
+        $user->delete();
+
+        $notification = array(
+            'message' => 'Student Group Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('student.group.view')->with($notification);
+
+    }
 }
