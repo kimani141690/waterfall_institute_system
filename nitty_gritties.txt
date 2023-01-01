@@ -1,0 +1,37 @@
+*******************
+WATERFALL INSTITUTE
+*******************
+
+Credentials
+-----------
+Name: arabella
+Email: arabella@gmail.com
+Password: arabella12345
+Hashed Password: $2y$10$3YrG6kxIvBejF8Nwn5XY5unRLVlvj3YkewevsPcuSPDIUPhBfvneW
+Photo path: profile-photos/vW8HUHpGDZilz30IRFcAisvOS7wkbopXZ1yRdLRw.jpg
+
+******
+
+TO-DO:
+Confirm the fee module is working as expected (+ and -)
+
+
+******
+
+SQL Code for Setting ID back to zero:
+SET @autoid := 0;
+UPDATE fee_category_amounts set id = @autoid := (@autoid+1);
+ALTER TABLE fee_category_amounts AUTO_INCREMENT = 1;
+
+******
+
+TO-DO:
+Delete correctly the course_unit controller, migrations and the table; no use for them.
+
+
+Class - year
+Fee category - course
+<option value="{{ $course->id }}" {{ ($edit_data[0]->course_id == $course->id ? "selected":"") }}>{{ $course->name}}</option>
+
+******
+Problem with assign unit
