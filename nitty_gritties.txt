@@ -7,7 +7,7 @@ Credentials
 Name: arabella
 Email: arabella@gmail.com
 Password: arabella12345
-Hashed Password: $2y$10$3YrG6kxIvBejF8Nwn5XY5unRLVlvj3YkewevsPcuSPDIUPhBfvneW
+Hashed Password: $2y$10$sjm6xOeyvBx4..at95D.5uF5ag7/2.ExOH4XfwNbWrfbDWgvAmkGO
 Photo path: profile-photos/vW8HUHpGDZilz30IRFcAisvOS7wkbopXZ1yRdLRw.jpg
 
 ******

@@ -74,8 +74,7 @@
         var link = $(this).attr("href");
 
         Swal.fire({
-          title: 'Are you sure?',
-          text: "Delete This Data?",
+          title: 'Delete This Data?',
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -86,7 +85,7 @@
             window.location.href = link
             Swal.fire(
               'Deleted!',
-              'succesfully.'
+              'Data has been succesfully deleted.'
             )
           }
         })
