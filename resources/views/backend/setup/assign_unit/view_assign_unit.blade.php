@@ -28,9 +28,9 @@
 						<thead>
 			<tr>
 				<th width="5%">SL</th>  
-				<th>Year</th> 
+			
 				<th>Course</th> 
-				<th>Unit</th> 
+		
 				<th width="25%">Action</th>
 				 
 			</tr>
@@ -39,10 +39,9 @@
 			@foreach($all_data as $key => $assign )
 			<tr>
 				<td>{{ $key+1 }}</td>
-				<td> {{ $assign->year_id }}</td>				 
-				<td> {{ $assign->course_id }}</td>				 
+				<td> {{ $assign['student_course']['name']}}</td>				 
 				<td>
-<a href = "" class="btn btn-info">Edit</a>
+<a href = "{{route('assign.unit.edit',$assign->course_id)}}" class="btn btn-info">Edit</a>
 <a href="" class="btn btn-primary">Details</a>
 
 				</td>

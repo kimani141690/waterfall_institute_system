@@ -15,7 +15,7 @@
             <!-- Basic Forms -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h4 class="box-title">Add Assign Unit Mark</h4>
+                    <h4 class="box-title">Edit Assigned Unit Mark</h4>
 
                 </div>
                 <!-- /.box-header -->
@@ -36,7 +36,7 @@
                                                     <select name="course_id" required="" class="form-control">
                                                         <option value="" selected="" disabled="">Select Course</option>
                                                         @foreach($courses as $course)
-                                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                                        <option value="{{ $course->id }}"{{ ($edit_data[0]->fee_category_id == $category -> id)? "selected":"" }}>{{ $category->name }}</option>
                                                         @endforeach
 
                                                     </select>
@@ -158,7 +158,7 @@
             <hr>
             <div class="form-row">
                 <div class="row">
-                    
+
 
                     <div class="col-md-5">
 

@@ -202,6 +202,10 @@ Route::prefix('setup')->group(function () {
 
   Route::get('assign/unit/add', [assign_unit_controller::class, 'add_assign_unit'])->name('assign.unit.add');
 
+  Route::post('assign/unit/store', [assign_unit_controller::class, 'store_assign_unit'])->name('store.assign.unit');
+
+  Route::get('assign/unit/edit/{course_id}', [assign_unit_controller::class, 'edit_assign_unit'])->name('assign.unit.edit');
+
   
   
 

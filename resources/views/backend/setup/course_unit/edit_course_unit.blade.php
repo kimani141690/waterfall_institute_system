@@ -15,7 +15,7 @@
             <!-- Basic Forms -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h4 class="box-title">Add Unit</h4>
+                    <h4 class="box-title">Edit Unit</h4>
 
                 </div>
                 <!-- /.box-header -->
