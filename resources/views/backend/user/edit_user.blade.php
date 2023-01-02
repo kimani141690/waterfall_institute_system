@@ -32,10 +32,10 @@
                                                 <div class="form-group">
                                                     <h5>User Role <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <select name="user_type" id="user_type" required="" class="form-control">
+                                                        <select name="role" id="role" required="" class="form-control">
                                                             <option value="" selected="" disabled="">Select Role</option>
-                                                            <option value="admin" {{ ($edit_data->user_type == "admin" ? "selected" : "") }}>Admin</option>
-                                                            <option value="user"{{ ($edit_data->user_type == "user" ? "selected" : "") }}>User</option>
+                                                            <option value="admin" {{ ($edit_data->role == "admin" ? "selected" : "") }}>Admin</option>
+                                                            <option value="operator"{{ ($edit_data->role == "operator" ? "selected" : "") }}>Operator</option>
 
                                                         </select>
                                                     </div>
