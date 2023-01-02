@@ -17,8 +17,8 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">Student Fee Amount List</h3>
-	<a href="{{route('fee.amount.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Add Fee Amount</a>			  
+				  <h3 class="box-title">Assigned Unit Mark List</h3>
+	<a href="{{route('assign.unit.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Assign Unit Mark</a>			  
 
 				</div>
 				<!-- /.box-header -->
@@ -28,19 +28,22 @@
 						<thead>
 			<tr>
 				<th width="5%">SL</th>  
-				<th>Fee Category</th> 
+				<th>Year</th> 
+				<th>Course</th> 
+				<th>Unit</th> 
 				<th width="25%">Action</th>
 				 
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($all_data as $key => $amount )
+			@foreach($all_data as $key => $assign )
 			<tr>
 				<td>{{ $key+1 }}</td>
-				<td> {{ $amount['fee_category']['name'] }}</td>				 
+				<td> {{ $assign->year_id }}</td>				 
+				<td> {{ $assign->course_id }}</td>				 
 				<td>
-<a href="{{route('fee.amount.edit',$amount->fee_category_id)}}" class="btn btn-info">Edit</a>
-<a href="{{route('fee.amount.details',$amount->fee_category_id)}}" class="btn btn-primary">Details</a>
+<a href = "" class="btn btn-info">Edit</a>
+<a href="" class="btn btn-primary">Details</a>
 
 				</td>
 				 

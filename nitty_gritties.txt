@@ -35,3 +35,26 @@ Fee category - course
 
 ******
 Problem with assign unit
+
+2nd January 2022 - Edit Fee Amount and Edit Course Unit
+
+*********
+Courses:
+*********
+Bachelor of Commerce
+Bachelor of Tourism Management
+Bachelor of Science in Hospitality and Hotel Management
+Bachelor of Business Science: Financial Engineering
+Bachelor of Business Science: Financial Economics
+Bachelor of Business Science: Actuarial Science
+Bachelor Of Science In Informatics And Computer Science
+Bachelor Of Business Information Technology
+Bachelor of Science in Computer Networks and Cyber Security (BSc. CNS)
+Bachelor of Laws
+Bachelor of Arts in Communication (Journalism and Public Relations / Journalism and Development Communication)
+Bachelor of Arts in International Studies
+Bachelor of Arts in Development Studies and Philosophy
+Bachelor of Science in Supply Chain and Operations Management
+Bachelor of Financial Services
+Bachelor Of Science In Electrical and Electronics Engineering
+Bachelor of Business Administration and Hospitality Management

@@ -29,6 +29,7 @@
 			<tr>
 				<th width="5%">SL</th>  
 				<th>Course</th> 
+				<th>Code</th> 
 				<th width="25%">Action</th>
 				 
 			</tr>
@@ -38,9 +39,10 @@
 			<tr>
 				<td>{{ $key+1 }}</td>
 				<td> {{ $unit['course']['name'] }}</td>				 
+				<td> {{ $unit['course']['course_code'] }}</td>				 
 				<td>
 <a href = "{{route('course.unit.edit',$unit->course_id)}}" class="btn btn-info">Edit</a>
-<a href="" class="btn btn-danger" id="delete">Delete</a>
+<a href="{{route('course.unit.details',$unit->course_id)}}" class="btn btn-primary">Details</a>
 
 				</td>
 				 

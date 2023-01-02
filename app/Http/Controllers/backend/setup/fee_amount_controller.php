@@ -57,4 +57,48 @@ class fee_amount_controller extends Controller
     	return view('backend.setup.fee_amount.edit_fee_amount',$data);
 
     }
+
+	public function update_fee_amount(Request $request, $fee_category_id){
+
+		if ($request->course_id == NULL) {
+       
+			$notification = array(
+				'message' => 'Sorry you did not select any class amount.',
+				'alert-type' => 'error'
+			);
+	
+			return redirect()->route('fee.amount.edit',$fee_category_id)->with($notification);
+				 
+			}else{
+				 
+		$count_course = count($request->course_id);
+		fee_category_amount::where('fee_category_id',$fee_category_id)->delete(); 
+				for ($i=0; $i <$count_course ; $i++) { 
+					$fee_amount = new fee_category_amount();
+					$fee_amount->fee_category_id = $request->fee_category_id;
+					$fee_amount->course_id = $request->course_id[$i];
+					$fee_amount->amount = $request->amount[$i];
+					$fee_amount->save();
+	
+				} // End For Loop	 
+	
+			}// end Else
+	
+		   $notification = array(
+				'message' => 'Data updated successfully',
+				'alert-type' => 'success'
+			);
+	
+			return redirect()->route('fee.amount.view')->with($notification);
+
+	}
+
+	public function details_fee_amount($fee_category_id){
+
+		$data['details_data'] = fee_category_amount::where('fee_category_id',$fee_category_id)->orderBy('course_id','asc')->get();
+
+   return view('backend.setup.fee_amount.details_fee_amount',$data);
+
+
+	}
 }

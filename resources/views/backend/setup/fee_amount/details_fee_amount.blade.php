@@ -17,32 +17,30 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">Student Fee Amount List</h3>
-	<a href="{{route('fee.amount.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Add Fee Amount</a>			  
+				  <h3 class="box-title"> Fee Amount Details</h3>
+	<a href="{{ route('fee.amount.add') }}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Add Fee Amount</a>			  
 
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
+
+<h4><strong>Fee Category : </strong>{{ $details_data['0']['fee_category']['name'] }} </h4>					
 					<div class="table-responsive">
-					  <table id="example1" class="table table-bordered table-striped">
-						<thead>
+					  <table class="table table-bordered table-striped">
+						<thead class="thead-light">
 			<tr>
 				<th width="5%">SL</th>  
-				<th>Fee Category</th> 
-				<th width="25%">Action</th>
+				<th>Course Name</th> 
+				<th width="25%">Amount</th>
 				 
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($all_data as $key => $amount )
+			@foreach($details_data as $key => $detail )
 			<tr>
 				<td>{{ $key+1 }}</td>
-				<td> {{ $amount['fee_category']['name'] }}</td>				 
-				<td>
-<a href="{{route('fee.amount.edit',$amount->fee_category_id)}}" class="btn btn-info">Edit</a>
-<a href="{{route('fee.amount.details',$amount->fee_category_id)}}" class="btn btn-primary">Details</a>
-
-				</td>
+				<td> {{ $detail['student_course']['name'] }}</td>				 
+				<td> {{ $detail->amount }}</td>
 				 
 			</tr>
 			@endforeach
