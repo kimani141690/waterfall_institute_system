@@ -17,8 +17,8 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">Assigned Unit Mark List</h3>
-	<a href="{{route('assign.unit.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Assign Unit Mark</a>			  
+				  <h3 class="box-title">Designation List</h3>
+	<a href=" {{route('designation.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Add Designation</a>			  
 
 				</div>
 				<!-- /.box-header -->
@@ -28,21 +28,19 @@
 						<thead>
 			<tr>
 				<th width="5%">SL</th>  
-			
-				<th>Course</th> 
-		
+				<th>Name</th> 
 				<th width="25%">Action</th>
 				 
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($all_data as $key => $assign )
+			@foreach($all_data as $key => $designation )
 			<tr>
 				<td>{{ $key+1 }}</td>
-				<td> {{ $assign['student_course']['name']}}</td>				 
+				<td> {{ $designation->name }}</td>				 
 				<td>
-<a href = "{{route('assign.unit.edit',$assign->course_id)}}" class="btn btn-info">Edit</a>
-<a href="{{route('assign.unit.details',$assign->course_id)}}" class="btn btn-primary">Details</a>
+<a href="{{route('designation.edit',$designation->id)}} " class="btn btn-info">Edit</a>
+<a href="{{route('designation.delete',$designation->id)}}" class="btn btn-danger" id="delete">Delete</a>
 
 				</td>
 				 

@@ -17,34 +17,36 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">Assigned Unit Mark List</h3>
-	<a href="{{route('assign.unit.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Assign Unit Mark</a>			  
+				  <h3 class="box-title"> Assign Unit Details</h3>
+	<a href="{{ route('assign.unit.add') }}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Add Assign Unit </a>			  
 
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
+
+<h4><strong>Course : </strong>{{ $details_data['0']['student_course']['name'] }} </h4>					
 					<div class="table-responsive">
-					  <table id="example1" class="table table-bordered table-striped">
-						<thead>
+					  <table class="table table-bordered table-striped">
+						<thead class="thead-light">
 			<tr>
 				<th width="5%">SL</th>  
-			
-				<th>Course</th> 
-		
-				<th width="25%">Action</th>
+				<th>Year</th> 
+				<th>Unit</th> 
+				<th width="15%">Full Mark</th>
+				<th width="15%">Pass Mark</th>
+				<th width="15%">Subjective Mark</th>
 				 
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($all_data as $key => $assign )
+			@foreach($details_data as $key => $detail )
 			<tr>
 				<td>{{ $key+1 }}</td>
-				<td> {{ $assign['student_course']['name']}}</td>				 
-				<td>
-<a href = "{{route('assign.unit.edit',$assign->course_id)}}" class="btn btn-info">Edit</a>
-<a href="{{route('assign.unit.details',$assign->course_id)}}" class="btn btn-primary">Details</a>
-
-				</td>
+				<td> {{ $detail['student_year']['name'] }}</td>				 
+				<td> {{ $detail['student_unit']['unit'] }}</td>				 
+				<td> {{ $detail->full_mark }}</td>
+				<td> {{ $detail->pass_mark }}</td>
+				<td> {{ $detail->subjective_mark }}</td>
 				 
 			</tr>
 			@endforeach

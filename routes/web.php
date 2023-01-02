@@ -13,6 +13,9 @@ use App\Http\Controllers\backend\setup\fee_category_controller;
 use App\Http\Controllers\backend\setup\fee_amount_controller;
 use App\Http\Controllers\backend\setup\exam_type_controller;
 use App\Http\Controllers\backend\setup\assign_unit_controller;
+use App\Http\Controllers\backend\setup\designation_controller;
+
+use App\Http\Controllers\backend\student\student_reg_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,11 +81,10 @@ Route::prefix('profile')->group(function () {
 //USER PROFILE AND CHANGE PASS
 
 Route::prefix('setup')->group(function () {
-
     // STUDENT CLASS ROUTES
 
     Route::get('student/course/view', [student_course_controller::class, 'view_student'])->name('student.course.view');
-    
+
     Route::get('student/course/add', [student_course_controller::class, 'student_course_add'])->name('student.course.add');
 
     Route::post('student/course/store', [student_course_controller::class, 'student_course_store'])->name('store.student.course');
@@ -93,8 +95,8 @@ Route::prefix('setup')->group(function () {
 
     Route::get('student/course/delete/{id}', [student_course_controller::class, 'student_course_delete'])->name('student.course.delete');
 
-    
-      
+
+
 
 
     // STUDENT YEAR ROUTES
@@ -167,50 +169,70 @@ Route::prefix('setup')->group(function () {
 
     Route::get('fee/amount/details/{fee_category_id}', [fee_amount_controller::class, 'details_fee_amount'])->name('fee.amount.details');
 
-    
-  // STUDENT UNIT ROUTES
 
-  Route::get('student/unit/view', [course_unit_controller::class, 'view_student_unit'])->name('student.unit.view');
+    // STUDENT UNIT ROUTES
 
-  Route::get('student/unit/add', [course_unit_controller::class, 'add_student_unit'])->name('student.unit.add');
+    Route::get('student/unit/view', [course_unit_controller::class, 'view_student_unit'])->name('student.unit.view');
 
-  Route::post('student/unit/store', [course_unit_controller::class, 'store_student_unit'])->name('course.unit.store');
+    Route::get('student/unit/add', [course_unit_controller::class, 'add_student_unit'])->name('student.unit.add');
 
-  Route::get('student/unit/edit/{course_id}', [course_unit_controller::class, 'edit_student_unit'])->name('course.unit.edit');
+    Route::post('student/unit/store', [course_unit_controller::class, 'store_student_unit'])->name('course.unit.store');
 
-  Route::post('student/unit/update/{course_id}', [course_unit_controller::class, 'update_student_unit'])->name('course.unit.update');
+    Route::get('student/unit/edit/{course_id}', [course_unit_controller::class, 'edit_student_unit'])->name('course.unit.edit');
 
-  Route::get('student/unit/details/{course_id}', [course_unit_controller::class, 'details_student_unit'])->name('course.unit.details');
+    Route::post('student/unit/update/{course_id}', [course_unit_controller::class, 'update_student_unit'])->name('course.unit.update');
 
-  // EXAM TYPE ROUTES
+    Route::get('student/unit/details/{course_id}', [course_unit_controller::class, 'details_student_unit'])->name('course.unit.details');
 
-  Route::get('exam/type/view', [exam_type_controller::class, 'view_exam_type'])->name('exam.type.view');
+    // EXAM TYPE ROUTES
 
-  Route::get('exam/type/add', [exam_type_controller::class, 'add_exam_type'])->name('exam.type.add');
+    Route::get('exam/type/view', [exam_type_controller::class, 'view_exam_type'])->name('exam.type.view');
 
-  Route::post('exam/type/store', [exam_type_controller::class, 'store_exam_type'])->name('exam.type.store');
+    Route::get('exam/type/add', [exam_type_controller::class, 'add_exam_type'])->name('exam.type.add');
 
-  Route::get('exam/type/edit/{id}', [exam_type_controller::class, 'edit_exam_type'])->name('exam.type.edit');
+    Route::post('exam/type/store', [exam_type_controller::class, 'store_exam_type'])->name('exam.type.store');
 
-  Route::post('exam/type/update/{id}', [exam_type_controller::class, 'update_exam_type'])->name('update.exam.type');
+    Route::get('exam/type/edit/{id}', [exam_type_controller::class, 'edit_exam_type'])->name('exam.type.edit');
 
-  Route::get('exam/type/delete/{id}', [exam_type_controller::class, 'delete_exam_type'])->name('exam.type.delete');
+    Route::post('exam/type/update/{id}', [exam_type_controller::class, 'update_exam_type'])->name('update.exam.type');
 
-  // ASSIGN UNIT ROUTES
+    Route::get('exam/type/delete/{id}', [exam_type_controller::class, 'delete_exam_type'])->name('exam.type.delete');
 
-  Route::get('assign/unit/view', [assign_unit_controller::class, 'view_assign_unit'])->name('assign.unit.view');
+    // ASSIGN UNIT ROUTES
 
-  Route::get('assign/unit/add', [assign_unit_controller::class, 'add_assign_unit'])->name('assign.unit.add');
+    Route::get('assign/unit/view', [assign_unit_controller::class, 'view_assign_unit'])->name('assign.unit.view');
 
-  Route::post('assign/unit/store', [assign_unit_controller::class, 'store_assign_unit'])->name('store.assign.unit');
+    Route::get('assign/unit/add', [assign_unit_controller::class, 'add_assign_unit'])->name('assign.unit.add');
 
-  Route::get('assign/unit/edit/{course_id}', [assign_unit_controller::class, 'edit_assign_unit'])->name('assign.unit.edit');
+    Route::post('assign/unit/store', [assign_unit_controller::class, 'store_assign_unit'])->name('store.assign.unit');
 
+    Route::get('assign/unit/edit/{course_id}', [assign_unit_controller::class, 'edit_assign_unit'])->name('assign.unit.edit');
+
+    Route::post('assign/unit/update/{course_id}', [assign_unit_controller::class, 'update_assign_unit'])->name('course.unit.update');
+
+    Route::get('assign/unit/details/{course_id}', [assign_unit_controller::class, 'details_assign_unit'])->name('assign.unit.details');
+
+
+    // DESIGNATION ROUTES
+
+    Route::get('designation/view', [designation_controller::class, 'view_designation'])->name('designation.view');
+
+    Route::get('designation/add', [designation_controller::class, 'add_designation'])->name('designation.add');
+
+    Route::post('designation/store', [designation_controller::class, 'store_designation'])->name('store.designation');
+
+    Route::get('designation/edit/{id}', [designation_controller::class, 'edit_designation'])->name('designation.edit');
+
+    Route::post('designation/update/{id}', [designation_controller::class, 'update_designation'])->name('update.designation');
+
+    Route::get('designation/delete/{id}', [designation_controller::class, 'delete_designation'])->name('designation.delete');
+});
   
-  
+  Route::prefix('student')->group(function () {
 
+    // STUDENT REGISTRATION ROUTES
 
-   
+    Route::get('/reg/view', [student_reg_controller::class, 'student_reg_view'])->name('student.registration.view');
     
     
     

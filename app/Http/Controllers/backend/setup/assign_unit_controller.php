@@ -59,4 +59,46 @@ class assign_unit_controller extends Controller
 
     	return view('backend.setup.assign_unit.edit_assign_unit',$data);
     }
+
+    public function update_assign_unit(Request $request, $course_id){
+        if ($request->unit_id == NULL) {
+       
+			$notification = array(
+				'message' => 'Sorry you did not select any unit.',
+				'alert-type' => 'error'
+			);
+	
+			return redirect()->route('assign.unit.edit',$course_id)->with($notification);
+				 
+			}else{
+				 
+		$count_course = count($request->unit_id);
+		assign_unit::where('course_id',$course_id)->delete(); 
+				for ($i=0; $i <$count_course ; $i++) { 
+                $assign_unit = new assign_unit();
+    			$assign_unit->course_id = $request->course_id;
+    			$assign_unit->year_id = $request->year_id[$i];
+    			$assign_unit->unit_id = $request->unit_id[$i];
+    			$assign_unit->full_mark = $request->full_mark[$i];
+    			$assign_unit->pass_mark = $request->pass_mark[$i];
+    			$assign_unit->subjective_mark = $request->subjective_mark[$i];
+    			$assign_unit->save();
+	
+				} // End For Loop	 
+	
+			}// end Else
+	
+		   $notification = array(
+				'message' => 'Unit mark assigned successfully.',
+				'alert-type' => 'success'
+			);
+	
+			return redirect()->route('assign.unit.view')->with($notification);
+    }
+
+    public function details_assign_unit($course_id){
+        $data['details_data'] = assign_unit::where('course_id',$course_id)->orderBy('year_id','asc')->get();
+
+        return view('backend.setup.assign_unit.details_assign_unit',$data);
+    }
 }
