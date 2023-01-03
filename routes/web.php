@@ -21,6 +21,11 @@ use App\Http\Controllers\backend\student\registration_fee_controller;
 use App\Http\Controllers\backend\student\semester_fee_controller;
 use App\Http\Controllers\backend\student\exam_fee_controller;
 
+use App\Http\Controllers\backend\employee\employee_reg_controller;
+use App\Http\Controllers\backend\employee\employee_salary_controller;
+
+use Laravel\Jetstream\Rules\Role;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +52,9 @@ Route::middleware([
 });
 
 Route::get('/admin/logout', [admin_controller::class, 'Logout'])->name('admin.logout');
+
+Route::group(['middleware'=>'auth'],function(){
+
 
 
 // USER MANAGEMENT ROUTES
@@ -268,7 +276,7 @@ Route::prefix('setup')->group(function () {
 
     Route::get('/reg/fee/coursewisedata', [registration_fee_controller::class, 'reg_fee_course_data'])->name('student.registration.fee.coursewise.get');
 
-    Route::get('/reg/fee/payslip', [registration_fee_controller::class, 'reg_fee_payslip'])->name('student.registration.fee.payslip');
+    Route::get('/reg/fee/payslip', [registration_fee_controller::class, 'reg_fee_payslip'])->name('student.register.fee.payslip');
 
     // SEMESTER FEE ROUTES
 
@@ -276,7 +284,7 @@ Route::prefix('setup')->group(function () {
 
     Route::get('/sem/fee/coursewisedata', [semester_fee_controller::class, 'sem_fee_course_data'])->name('student.semester.fee.coursewise.get');
 
-    Route::get('/reg/fee/payslip', [semester_fee_controller::class, 'sem_fee_payslip'])->name('student.semester.fee.payslip');
+    Route::get('/sem/fee/payslip', [semester_fee_controller::class, 'sem_fee_payslip'])->name('student.semester.fee.payslip');
 
     // EXAM FEE ROUTES
 
@@ -287,11 +295,43 @@ Route::prefix('setup')->group(function () {
     Route::get('/exam/fee/payslip', [exam_fee_controller::class, 'exam_fee_payslip'])->name('student.exam.fee.payslip');
 
 
-
-
-    
-    
-    
-
-   
 });
+
+Route::prefix('employee')->group(function () {
+    // EMPLOYEE REGISTRATION ROUTES
+
+    Route::get('/reg/view', [employee_reg_controller::class, 'employee_view'])->name('employee.registration.view');
+
+    Route::get('/reg/add', [employee_reg_controller::class, 'employee_add'])->name('employee.registration.add');
+
+    Route::post('/reg/store', [employee_reg_controller::class, 'employee_store'])->name('store.employee.registration');
+
+    Route::get('/reg/edit/{id}', [employee_reg_controller::class, 'employee_edit'])->name('employee.registration.edit');
+
+    Route::post('/reg/update/{id}', [employee_reg_controller::class, 'employee_update'])->name('update.employee.registration');
+
+    Route::get('/reg/details/{id}', [employee_reg_controller::class, 'employee_details'])->name('employee.registration.details');
+
+
+    // EMPLOYEE SALARY ROUTES
+
+    Route::get('/salary/view', [employee_salary_controller::class, 'salary_view'])->name('employee.salary.view');
+
+    Route::get('/salary/increment/{id}', [employee_salary_controller::class, 'salary_increment'])->name('employee.salary.increment');
+
+    Route::post('salary/update/increment/{id}', [employee_salary_controller::class, 'update_increment'])->name('update.increment.store');
+    
+    Route::post('salary/details/{id}', [employee_salary_controller::class, 'salary_details'])->name('employee.salary.details');
+
+
+});
+
+
+
+
+
+
+
+
+
+}); // END MIDDLEWARE AUTH ROUTE

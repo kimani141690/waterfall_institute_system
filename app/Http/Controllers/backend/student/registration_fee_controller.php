@@ -65,7 +65,7 @@ class registration_fee_controller extends Controller
 
             $html[$key]['tdsource'] .='<td>'.'Ksh '.$finalfee.'</td>';
             $html[$key]['tdsource'] .='<td>';
-            $html[$key]['tdsource'] .='<a class="btn btn-sm btn-'.$color.'" title="PaySlip" target="_blanks" href="'.route("student.semester.fee.payslip").'?course_id='.$v->course_id.'&student_id='.$v->student_id.'">Fee Slip</a>';
+            $html[$key]['tdsource'] .='<a class="btn btn-sm btn-'.$color.'" title="PaySlip" target="_blanks" href="'.route("student.register.fee.payslip").'?course_id='.$v->course_id.'&student_id='.$v->student_id.'">Fee Slip</a>';
             $html[$key]['tdsource'] .= '</td>';
 
         }  
