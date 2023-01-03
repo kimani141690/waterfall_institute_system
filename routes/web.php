@@ -16,6 +16,10 @@ use App\Http\Controllers\backend\setup\assign_unit_controller;
 use App\Http\Controllers\backend\setup\designation_controller;
 
 use App\Http\Controllers\backend\student\student_reg_controller;
+use App\Http\Controllers\backend\student\student_roll_controller;
+use App\Http\Controllers\backend\student\registration_fee_controller;
+use App\Http\Controllers\backend\student\semester_fee_controller;
+use App\Http\Controllers\backend\student\exam_fee_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -233,6 +237,58 @@ Route::prefix('setup')->group(function () {
     // STUDENT REGISTRATION ROUTES
 
     Route::get('/reg/view', [student_reg_controller::class, 'student_reg_view'])->name('student.registration.view');
+
+    Route::get('/reg/add', [student_reg_controller::class, 'student_reg_add'])->name('student.registration.add');
+
+    Route::post('/reg/store', [student_reg_controller::class, 'student_reg_store'])->name('store.student.registration');
+
+    Route::get('/year/course/wise', [student_reg_controller::class, 'student_course_year'])->name('student.year.course.wise');
+
+    Route::get('/reg/edit/{student_id}', [student_reg_controller::class, 'student_reg_edit'])->name('student.registration.edit');
+
+    Route::post('/reg/update/{student_id}', [student_reg_controller::class, 'student_reg_update'])->name('update.student.registration');
+
+    Route::get('/reg/promotion/{student_id}', [student_reg_controller::class, 'student_reg_promotion'])->name('student.promotion');
+
+    Route::post('/reg/update/promotion/{student_id}', [student_reg_controller::class, 'student_update_promotion'])->name('promotion.student.registration');
+
+    Route::get('/reg/details/{student_id}', [student_reg_controller::class, 'student_reg_details'])->name('student.registration.details');
+
+    // STUDENT ROLL GENERATION ROUTES
+
+    Route::get('/roll/generate/view', [student_roll_controller::class, 'student_roll_view'])->name('roll.generate.view');
+
+    Route::get('/roll/getstudents', [student_roll_controller::class, 'getstudents'])->name('student.registration.getstudents');
+
+    Route::post('/roll/generate/store', [student_roll_controller::class, 'student_roll_store'])->name('roll.generate.store');
+
+    // REGISTRATION FEE ROUTES
+
+    Route::get('/reg/fee/view', [registration_fee_controller::class, 'reg_fee_view'])->name('registration.fee.view');
+
+    Route::get('/reg/fee/coursewisedata', [registration_fee_controller::class, 'reg_fee_course_data'])->name('student.registration.fee.coursewise.get');
+
+    Route::get('/reg/fee/payslip', [registration_fee_controller::class, 'reg_fee_payslip'])->name('student.registration.fee.payslip');
+
+    // SEMESTER FEE ROUTES
+
+    Route::get('/sem/fee/view', [semester_fee_controller::class, 'semester_fee_view'])->name('semester.fee.view');
+
+    Route::get('/sem/fee/coursewisedata', [semester_fee_controller::class, 'sem_fee_course_data'])->name('student.semester.fee.coursewise.get');
+
+    Route::get('/reg/fee/payslip', [semester_fee_controller::class, 'sem_fee_payslip'])->name('student.semester.fee.payslip');
+
+    // EXAM FEE ROUTES
+
+    Route::get('/exam/fee/view', [exam_fee_controller::class, 'exam_fee_view'])->name('exam.fee.view');
+
+    Route::get('/exam/fee/coursewisedata', [exam_fee_controller::class, 'exam_fee_course_data'])->name('student.exam.fee.coursewise.get');
+
+    Route::get('/exam/fee/payslip', [exam_fee_controller::class, 'exam_fee_payslip'])->name('student.exam.fee.payslip');
+
+
+
+
     
     
     
