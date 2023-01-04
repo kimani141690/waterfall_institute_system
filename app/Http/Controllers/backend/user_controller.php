@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AcceptanceLetter;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class user_controller extends Controller
 {
@@ -47,6 +49,15 @@ class user_controller extends Controller
     	return redirect()->route('user.view')->with($notification);
 
     }
+
+
+	//ACCEPTANCE LETTER
+	//TODO: change user to be retrived from arguments
+	public function send_acceptance_letter(){
+		$user = new User();
+		$user->email = "ngethenan768@gmail.com";
+		Mail::to($user)->send(new AcceptanceLetter($user));
+	}
 
     public function user_edit($id){
 
