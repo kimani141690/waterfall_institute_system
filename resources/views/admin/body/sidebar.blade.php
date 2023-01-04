@@ -88,10 +88,25 @@ $route = Route::current()->getName();
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('student.registration.view')}}"><i class="ti-more"></i>Student Registration</a></li>
+            <li><a href="{{route('student.attendance.view')}}"><i class="ti-more"></i>Student Attendance</a></li>
             <li><a href="{{route('roll.generate.view')}}"><i class="ti-more"></i>Roll Generation</a></li>
             <li><a href="{{route('registration.fee.view')}}"><i class="ti-more"></i>Registration Fee</a></li>
             <li><a href="{{route('semester.fee.view')}}"><i class="ti-more"></i>Semester Fee</a></li>
             <li><a href="{{route('exam.fee.view')}}"><i class="ti-more"></i>Exam Fee</a></li>
+           
+          </ul>
+        </li>
+        <li class="treeview {{ ($prefix == '/marks')?'active':'' }}">
+          <a href="#">
+            <i data-feather="mail"></i> <span>Marks Management</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('marks.entry.add')}}"><i class="ti-more"></i>Mark Entry</a></li>
+            <li><a href="{{route('marks.entry.grade')}}"><i class="ti-more"></i>Mark Grade</a></li>
+            <li><a href="{{route('marksheet.generate.view')}}"><i class="ti-more"></i>Marksheet Generator</a></li>
            
           </ul>
         </li>
@@ -106,6 +121,8 @@ $route = Route::current()->getName();
           <ul class="treeview-menu">
             <li><a href="{{route('employee.registration.view')}}"><i class="ti-more"></i>Employee Registration</a></li>
             <li><a href="{{route('employee.salary.view')}}"><i class="ti-more"></i>Employee Salary</a></li>
+            <li><a href="{{route('employee.leave.view')}}"><i class="ti-more"></i>Employee Leave</a></li>
+            <li><a href="{{route('employee.attendance.view')}}"><i class="ti-more"></i>Employee Attendance</a></li>
            
           </ul>
         </li>

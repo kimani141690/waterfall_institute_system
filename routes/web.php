@@ -16,6 +16,7 @@ use App\Http\Controllers\backend\setup\assign_unit_controller;
 use App\Http\Controllers\backend\setup\designation_controller;
 
 use App\Http\Controllers\backend\student\student_reg_controller;
+use App\Http\Controllers\backend\student\student_attendance_controller;
 use App\Http\Controllers\backend\student\student_roll_controller;
 use App\Http\Controllers\backend\student\registration_fee_controller;
 use App\Http\Controllers\backend\student\semester_fee_controller;
@@ -23,6 +24,15 @@ use App\Http\Controllers\backend\student\exam_fee_controller;
 
 use App\Http\Controllers\backend\employee\employee_reg_controller;
 use App\Http\Controllers\backend\employee\employee_salary_controller;
+use App\Http\Controllers\backend\employee\employee_leave_controller;
+use App\Http\Controllers\backend\employee\employee_attendance_controller;
+
+use App\Http\Controllers\backend\marks\marks_controller;
+use App\Http\Controllers\backend\marks\grade_controller;
+
+use App\Http\Controllers\backend\default_controller;
+
+use App\Http\Controllers\backend\marks\marksheet_controller;
 
 use Laravel\Jetstream\Rules\Role;
 
@@ -196,6 +206,7 @@ Route::prefix('setup')->group(function () {
 
     Route::get('student/unit/details/{course_id}', [course_unit_controller::class, 'details_student_unit'])->name('course.unit.details');
 
+
     // EXAM TYPE ROUTES
 
     Route::get('exam/type/view', [exam_type_controller::class, 'view_exam_type'])->name('exam.type.view');
@@ -270,6 +281,18 @@ Route::prefix('setup')->group(function () {
 
     Route::post('/roll/generate/store', [student_roll_controller::class, 'student_roll_store'])->name('roll.generate.store');
 
+    // STUDENT ATTENDANCE ROUTES
+    Route::get('attendance/view/', [student_attendance_controller::class, 'attendance_view'])->name('student.attendance.view');
+
+    Route::get('attendance/add/', [student_attendance_controller::class, 'attendance_add'])->name('student.attendance.add');
+
+    Route::post('attendance/store/', [student_attendance_controller::class, 'attendance_store'])->name('store.student.attendance');
+
+    Route::get('attendance/edit/{date}', [student_attendance_controller::class, 'attendance_edit'])->name('student.attendance.edit');
+
+    Route::get('attendance/details/{date}', [student_attendance_controller::class, 'attendance_details'])->name('student.attendance.details');
+
+
     // REGISTRATION FEE ROUTES
 
     Route::get('/reg/fee/view', [registration_fee_controller::class, 'reg_fee_view'])->name('registration.fee.view');
@@ -321,13 +344,64 @@ Route::prefix('employee')->group(function () {
 
     Route::post('salary/update/increment/{id}', [employee_salary_controller::class, 'update_increment'])->name('update.increment.store');
     
-    Route::post('salary/details/{id}', [employee_salary_controller::class, 'salary_details'])->name('employee.salary.details');
+    Route::get('salary/details/{id}', [employee_salary_controller::class, 'salary_details'])->name('employee.salary.details');
+
+    // EMPLOYEE LEAVE ROUTES
+
+    Route::get('leave/view/', [employee_leave_controller::class, 'leave_view'])->name('employee.leave.view');
+
+    Route::get('leave/add/', [employee_leave_controller::class, 'leave_add'])->name('employee.leave.add');
+
+    Route::post('leave/store/', [employee_leave_controller::class, 'leave_store'])->name('store.employee.leave');
+
+    Route::get('leave/edit/{id}', [employee_leave_controller::class, 'leave_edit'])->name('employee.leave.edit');
+
+    Route::post('leave/update/{id}', [employee_leave_controller::class, 'leave_update'])->name('update.employee.leave');
+
+    Route::get('leave/delete/{id}', [employee_leave_controller::class, 'leave_delete'])->name('employee.leave.delete');
+
+      // EMPLOYEE ATTENDANCE ROUTES
+
+      Route::get('attendance/view/', [employee_attendance_controller::class, 'attendance_view'])->name('employee.attendance.view');
+
+      Route::get('attendance/add/', [employee_attendance_controller::class, 'attendance_add'])->name('employee.attendance.add');
+
+      Route::post('attendance/store/', [employee_attendance_controller::class, 'attendance_store'])->name('store.employee.attendance');
+
+      Route::get('attendance/edit/{date}', [employee_attendance_controller::class, 'attendance_edit'])->name('employee.attendance.edit');
+
+      Route::get('attendance/details/{date}', [employee_attendance_controller::class, 'attendance_details'])->name('employee.attendance.details');
 
 
 });
 
+Route::prefix('marks')->group(function () {
+    // EMPLOYEE REGISTRATION ROUTES
+
+    Route::get('/marks/entry/add', [marks_controller::class, 'marks_add'])->name('marks.entry.add');
+
+    Route::post('/marks/entry/store', [marks_controller::class, 'marks_store'])->name('marks.entry.store');
+
+    // MARK GRADE ROUTES
+
+    Route::get('/marks/grade/view', [grade_controller::class, 'marks_grade_view'])->name('marks.entry.grade');
+
+    Route::get('/marks/grade/add', [grade_controller::class, 'marks_grade_add'])->name('marks.grade.add');
+
+    Route::post('/marks/grade/store', [grade_controller::class, 'marks_grade_store'])->name('store.marks.grade');
 
 
+});
+
+Route::get('/marks/getunit', [default_controller::class, 'get_unit'])->name('marks.getunit');
+
+Route::get('student/marks/getstudents', [default_controller::class, 'get_students'])->name('student.marks.getstudents');
+
+
+// MARKSHEET GENERATION ROUTES
+Route::get('/marksheet/generate/view', [marksheet_controller::class, 'marksheet_view'])->name('marksheet.generate.view');
+
+Route::get('/marksheet/generate/get', [marksheet_controller::class, 'marksheet_get'])->name('marksheet.get');
 
 
 
