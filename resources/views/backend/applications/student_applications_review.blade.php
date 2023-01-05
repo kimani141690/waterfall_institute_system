@@ -51,14 +51,7 @@
                                                 <a href="{{ asset('upload/result_slip_applications/'.$value->result_slip) }}">View the result slip</a>
                                             </td>
                                             <td>
-
-                                                <div class="switch-toggle switch-3 switch-candy">
-
-                                                <input type="checkbox" id="scales" name="">
-                                                    <label for="scales">Scales</label>
-                                                </div>
-                                              
-
+                                                <a href="{{route('applicant.details',$value->id)}}" class="btn btn-dark">Details</a>
                                             </td>
                                         </tr>
                                         @endforeach

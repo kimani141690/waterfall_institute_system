@@ -138,7 +138,6 @@ $route = Route::current()->getName();
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{{route('user.email.acceptance')}}"><i class="ti-more"></i>Send Acceptance Letter</a></li>
           <li><a href="{{route('applications.view')}}"><i class="ti-more"></i>View Applications</a></li>
 
 

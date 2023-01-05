@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('acceptance_status')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

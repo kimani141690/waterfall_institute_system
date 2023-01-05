@@ -77,7 +77,7 @@ Route::get('/dashboard', [dashboard_controller::class, 'view_content'])->name('d
 
 Route::get('/admin/logout', [admin_controller::class, 'Logout'])->name('admin.logout');
 
-Route::get('/users/email/acceptance', [user_controller::class, 'send_acceptance_letter'])->name('user.email.acceptance');
+Route::get('/users/email/acceptance/{id}', [user_controller::class, 'send_acceptance_letter'])->name('user.email.acceptance');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -479,6 +479,8 @@ Route::prefix('applications')->group(function () {
     Route::post('/store', [student_applications_controller::class, 'student_application_store'])->name('student.applications.store');
 
     Route::get('/view', [student_applications_controller::class, 'student_application_review'])->name('applications.view');
+
+    Route::get('/applicant/details/{applicant_id}', [student_applications_controller::class, 'applicant_details'])->name('applicant.details');
 
 });
 
