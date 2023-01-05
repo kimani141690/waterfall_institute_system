@@ -5,6 +5,7 @@ $route = Route::current()->getName();
 @endphp
 
 <aside class="main-sidebar">
+
   <!-- sidebar-->
   <section class="sidebar">
 
@@ -76,6 +77,8 @@ $route = Route::current()->getName();
           <li><a href="{{route('exam.type.view')}}"><i class="ti-more"></i>Exam Type</a></li>
           <li><a href="{{route('assign.unit.view')}}"><i class="ti-more"></i>Assign Unit</a></li>
           <li><a href="{{route('designation.view')}}"><i class="ti-more"></i>Designation</a></li>
+            <li><a href="{{route('room.view')}}"><i class="ti-more"></i>Room</a></li>
+            <li><a href="{{route('lesson.view')}}"><i class="ti-more"></i>Lessons</a></li>
         </ul>
       </li>
 
@@ -167,7 +170,6 @@ $route = Route::current()->getName();
         </a>
       </li>
       <li>
-
 
     </ul>
   </section>
