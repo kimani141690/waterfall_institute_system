@@ -206,7 +206,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::post('student/unit/update/{course_id}', [course_unit_controller::class, 'update_student_unit'])->name('course.unit.update');
 
-    Route::get('student/unit/details/{course_id}', [course_unit_controller::class, 'details_student_unit'])->name('course.unit.details');
+        Route::get('student/unit/details/{course_id}', [course_unit_controller::class, 'details_student_unit'])->name('course.unit.details');
 
         // EXAM TYPE ROUTES
 
@@ -280,7 +280,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/roll/getstudents', [student_roll_controller::class, 'getstudents'])->name('student.registration.getstudents');
 
-    Route::post('/roll/generate/store', [student_roll_controller::class, 'student_roll_store'])->name('roll.generate.store');
+        Route::post('/roll/generate/store', [student_roll_controller::class, 'student_roll_store'])->name('roll.generate.store');
 
         // REGISTRATION FEE ROUTES
 
@@ -329,19 +329,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/salary/increment/{id}', [employee_salary_controller::class, 'salary_increment'])->name('employee.salary.increment');
 
-    Route::post('salary/update/increment/{id}', [employee_salary_controller::class, 'update_increment'])->name('update.increment.store');
-    
-    Route::get('salary/details/{id}', [employee_salary_controller::class, 'salary_details'])->name('employee.salary.details');
+        Route::post('salary/update/increment/{id}', [employee_salary_controller::class, 'update_increment'])->name('update.increment.store');
 
-
-});
-
-
-
-
-
-
-
-
-
+        Route::get('salary/details/{id}', [employee_salary_controller::class, 'salary_details'])->name('employee.salary.details');
+    });
 }); // END MIDDLEWARE AUTH ROUTE
