@@ -33,7 +33,8 @@ use App\Http\Controllers\backend\marks\grade_controller;
 use App\Http\Controllers\backend\default_controller;
 
 use App\Http\Controllers\backend\marks\marksheet_controller;
-
+use App\Http\Controllers\backend\setup\lesson_controller;
+use App\Http\Controllers\backend\setup\room_controller;
 use Laravel\Jetstream\Rules\Role;
 
 /*
@@ -250,6 +251,37 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('designation/update/{id}', [designation_controller::class, 'update_designation'])->name('update.designation');
 
         Route::get('designation/delete/{id}', [designation_controller::class, 'delete_designation'])->name('designation.delete');
+
+
+        // ROOM ROUTES
+
+        Route::get('room/view', [room_controller::class, 'view_room'])->name('room.view');
+
+        Route::get('room/add', [room_controller::class, 'add_room'])->name('room.add');
+
+        Route::post('room/store', [room_controller::class, 'store_room'])->name('store.room');
+
+        Route::get('room/edit/{id}', [room_controller::class, 'edit_room'])->name('room.edit');
+
+        Route::post('room/update/{id}', [room_controller::class, 'update_room'])->name('update.room');
+
+        Route::get('room/delete/{id}', [room_controller::class, 'delete_room'])->name('room.delete');
+
+
+        // LESSON ROUTES
+        Route::get('lesson/view', [lesson_controller::class, 'view_lessons'])->name('lesson.view');
+
+        Route::get('lesson/course/select', [lesson_controller::class, 'course_select'])->name('lesson.course.select');
+
+        Route::get('lesson/add', [lesson_controller::class, 'add_lesson'])->name('lesson.add');
+
+        Route::post('lesson/store', [lesson_controller::class, 'store_lesson'])->name('store.lesson');
+
+        Route::get('lesson/edit/{id}', [lesson_controller::class, 'edit_lesson'])->name('lesson.edit');
+
+        Route::post('lesson/update/{id}', [lesson_controller::class, 'update_lesson'])->name('update.lesson');
+
+        Route::get('lesson/delete/{id}', [lesson_controller::class, 'delete_lesson'])->name('lesson.delete');
     });
 
     Route::prefix('student')->group(function () {

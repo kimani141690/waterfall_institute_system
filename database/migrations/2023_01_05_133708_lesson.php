@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
             $table->integer('weekday');
-            $table->time('start_time');
-            $table->time('end_time');
+            $table->time('start_time')->format('H:i');
+            $table->time('end_time')->format('H:i');
             $table->foreignId('course_unit_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('lecturer_id');
             $table->foreign('lecturer_id', 'lec_fk_101010')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('room_id');
             $table->foreign('room_id', 'room_fk_101010')->references('id')->on('rooms')->onDelete('cascade');
             $table->timestamps();
         });
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lessons');
+        //
     }
 };

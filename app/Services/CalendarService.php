@@ -43,7 +43,8 @@ class CalendarService
                         ->join('users', 'lessons.lecturer_id', '=', 'users.id')
                         ->join('student_courses', 'course_units.course_id', '=', 'student_courses.id')
                         ->join('student_years', 'course_units.year_id', '=', 'student_years.id')
-                        ->select('users.name as lecturer_name', 'course_units.unit as unit_name', 'student_courses.name as course', 'student_years.name as year')
+                        ->join('rooms', 'lessons.room_id', '=', 'rooms.id')
+                        ->select('lessons.weekday as weekday', 'users.name as lecturer_name', 'course_units.unit as unit_name', 'student_courses.name as course', 'student_years.name as year', 'rooms.name as room')
                         ->where('lessons.lecturer_id', $lesson->lecturer_id)
                         ->where('lessons.course_unit_id', $lesson->units_id)
                         ->get();
@@ -53,6 +54,8 @@ class CalendarService
                         'unit_name'   => $blockData[0]->unit_name,
                         'course' => $blockData[0]->course,
                         'semester' => $blockData[0]->year,
+                        'room' => $blockData[0]->room,
+                        'weekday' => $blockData[0]->weekday,
                         'rowspan'      => ($difference / 30)
                     ]);
                 } else if (!$lessons->where('weekday', $index)->where('start_time', '<', $time['start'])->where('end_time', '>=', $time['end'])->count()) {
