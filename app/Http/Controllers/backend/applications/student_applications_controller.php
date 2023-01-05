@@ -35,6 +35,7 @@ class student_applications_controller extends Controller
     public function student_application_review(){
         $data['all_data'] = student_applications::all();
 
+
         return view('backend.applications.student_applications_review',$data);
     }
 }

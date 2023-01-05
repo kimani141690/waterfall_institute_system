@@ -443,6 +443,7 @@ Route::prefix('applications')->group(function () {
     Route::post('/store', [student_applications_controller::class, 'student_application_store'])->name('student.applications.store');
 
     Route::get('/view', [student_applications_controller::class, 'student_application_review'])->name('applications.view');
+
 });
 
 
