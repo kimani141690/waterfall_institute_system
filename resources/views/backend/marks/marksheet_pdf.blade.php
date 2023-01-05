@@ -180,7 +180,66 @@
                             <br><br>
 
 
+                            <table border="1" style="border-color: #ffffff;" width="100%" cellpadding="1" cellspacing="1">
+@php
+$total_grade = 0;
+$point_for_letter_grade = (float)$total_point/(float)$total_unit;
+$total_grade = App\Models\marks_grade::where([['start_point','<=',$point_for_letter_grade],['end_point','>=',$point_for_letter_grade]])->first();
+$grade_point_avg = (float)$total_point/(float)$total_unit;
+@endphp
+<tr>
+  <td width="50%"><strong>Grade Point Average</strong></td>
+  <td width="50%"> 
+    @if($count_fail > 0)
+    0.00
+    @else
+    {{number_format((float)$grade_point_avg,2)}}
+    @endif
+  </td>
+</tr>
+
+<tr>
+  <td width="50%"><strong>Letter Grade </strong></td>
+  <td width="50%"> 
+
+    
+    {{ $grade_name }}
+  
+  </td>
+</tr>
+<tr>
+  <td width="50%">Total Marks with Fraction</td>
+  <td width="50%"><strong>{{ $total_marks }}</strong></td>
+</tr>
+
+  </table>        
+        </div>        
+      </div>   <!--  End 4th row start -->     
+
+
+<br><br>
  
+<div class="row"> <!--  6th row start -->
+  <div class="col-md-4">
+    <hr style="border: solid 1px; widows: 60%; color: #ffffff; margin-bottom: -3px;">
+    <div class="text-center">Head of Academics</div>
+  </div>
+
+    <div class="col-md-4">
+  <hr style="border: solid 1px; widows: 60%; color: #ffffff; margin-bottom: -3px;">
+    <div class="text-center">Parents / Guardian </div>
+  </div>
+
+    <div class="col-md-4">
+ <hr style="border: solid 1px; widows: 60%; color: #ffffff; margin-bottom: -3px;">
+    <div class="text-center">Lecturer </div>
+  </div>
+  
+</div>  <!--  End 6th row start -->
+
+
+<br><br>
+
 
 
 

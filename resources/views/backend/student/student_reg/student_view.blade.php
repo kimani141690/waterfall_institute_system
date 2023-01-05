@@ -103,7 +103,6 @@
                                             <th width="5%">SL</th>
                                             <th>ID NO</th>
                                             <th>Name</th>
-                                            <th>Roll</th>
                                             <th>Course</th>
                                             <th>Year</th>
                                             <th>Image</th>
@@ -120,7 +119,6 @@
                                             <td>{{ $key+1 }}</td>
                                             <td> {{$value['student']['id_no'] }}</td>
                                             <td> {{$value['student']['name'] }}</td>
-                                            <td> {{$value->roll }}</td>
                                             <td> {{$value['student_course']['name'] }}</td>
                                             <td> {{$value['student_year']['name'] }}</td>
                                             <td>

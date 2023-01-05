@@ -43,7 +43,7 @@ class assign_unit_controller extends Controller
     	}// End If Condition
 
     	$notification = array(
-    		'message' => 'Unit assigned successfully',
+    		'message' => 'Unit assigned successfully.',
     		'alert-type' => 'success'
     	);
 
