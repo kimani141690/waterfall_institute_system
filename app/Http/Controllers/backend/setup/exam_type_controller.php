@@ -64,8 +64,8 @@ class exam_type_controller extends Controller
     }
 
     public function delete_exam_type($id){
-        $user = exam_type::find($id);
-        $user->delete();
+        $exam_type = exam_type::find($id);
+        $exam_type->delete();
 
         $notification = array(
             'message' => 'Exam type deleted successfully.',
