@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('mobile')->nullable();
             $table->string('result_slip')->nullable();
+            $table->string('acceptance_status')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });

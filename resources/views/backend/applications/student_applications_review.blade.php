@@ -11,20 +11,6 @@
         <section class="content">
             <div class="row">
 
-                <div class="col-12">
-                    <div class="box bb-3 border-warning">
-                        <div class="box-header">
-                            <h4 class="box-title">Student <strong>Search</strong></h4>
-                        </div>
-
-                        <div class="box-body">
-
-                    
-
-
-                        </div>
-                    </div>
-                </div> <!-- // end first col 12 -->
 
 
 
@@ -33,27 +19,23 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Student List</h3>
-                            <a href="{{ route('student.registration.add') }}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Add Student </a>
+                            <h3 class="box-title">Student Applications List</h3>
 
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="table-responsive">
 
-                                @if(!@$search)
+
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th width="5%">SL</th>
-                                            <th>ID NO</th>
-                                            <th>Name</th>
-                                            <th>Course</th>
-                                            <th>Year</th>
-                                            <th>Image</th>
-                                            @if(Auth::user()->role == "admin")
-                                            <th>Code</th>
-                                            @endif
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Result Slip</th>
+
                                             <th width="25%">Action</th>
 
                                         </tr>
@@ -62,73 +44,22 @@
                                         @foreach($all_data as $key => $value )
                                         <tr>
                                             <td>{{ $key+1 }}</td>
-                                            <td> {{$value['student']['id_no'] }}</td>
-                                            <td> {{$value['student']['name'] }}</td>
-                                            <td> {{$value['student_course']['name'] }}</td>
-                                            <td> {{$value['student_year']['name'] }}</td>
+                                            <td> {{$value->first_name}}</td>
+                                            <td> {{$value->last_name }}</td>
+                                            <td> {{$value->email }}</td>
                                             <td>
-                                                <img src="{{ (!empty($value['student']['image']))? url('upload/student_images/'.$value['student']['image']):url('upload/no_image.jpg') }}" style="width: 60px; width: 60px;">
+                                                <a href="{{ asset('upload/result_slip_applications/'.$value->result_slip) }}">View the result slip</a>
                                             </td>
-                                            <td>{{$value['student']['code']}} </td>
                                             <td>
-                                                <a title="Edit" href="{{ route('student.registration.edit',$value->student_id)}}" class="btn btn-info"> <i class="fa fa-edit"></i> </a>
 
-                                                <a title="Promotion" href="{{ route('student.promotion',$value->student_id)}}" class="btn btn-primary"><i class="fa fa-check"></i></a>
+                                                <div class="switch-toggle switch-3 switch-candy">
 
-                                                <a target="_blank" title="Details" href="{{ route('student.registration.details',$value->student_id)}}" class="btn btn-danger"><i class="fa fa-eye"></i></a>
-
-                                            </td>
-
-                                        </tr>
-                                        @endforeach
-
-                                    </tbody>
-                                    <tfoot>
-
-                                    </tfoot>
-                                </table>
-
-                                @else
-
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th width="5%">SL</th>
-                                            <th>ID NO</th>
-                                            <th>Name</th>
-                                            <th>Roll</th>
-                                            <th>Course</th>
-                                            <th>Year</th>
-                                            <th>Image</th>
-                                            @if(Auth::user()->role == "admin")
-                                            <th>Code</th>
-                                            @endif
-                                            <th width="25%">Action</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($all_data as $key => $value )
-                                        <tr>
-                                            <td>{{ $key+1 }}</td>
-                                            <td> {{$value['student']['id_no'] }}</td>
-                                            <td> {{$value['student']['name'] }}</td>
-                                            <td> {{$value->roll }}</td>
-                                            <td> {{$value['student_course']['name'] }}</td>
-                                            <td> {{$value['student_year']['name'] }}</td>
-                                            <td>
-                                                <img src="{{ (!empty($value['student']['image']))? url('upload/student_images/'.$value['student']['image']):url('upload/no_image.jpg') }}" style="width: 60px; width: 60px;">
-                                            </td>
-                                            <td>{{$value['student']['code']}} </td>
-                                            <td>
-                                            <a title="Edit" href="{{ route('student.registration.edit',$value->student_id)}}" class="btn btn-info"> <i class="fa fa-edit"></i> </a>
-
-                                                <a title="Promotion" href="{{ route('student.promotion',$value->student_id)}}" class="btn btn-primary"><i class="fa fa-check"></i></a>
-
-                                                <a target="_blank" title="Details" href="{{ route('student.registration.details',$value->student_id)}}" class="btn btn-danger"><i class="fa fa-eye"></i></a>
+                                                <input type="checkbox" id="scales" name="">
+                                                    <label for="scales">Scales</label>
+                                                </div>
+                                              
 
                                             </td>
-
                                         </tr>
                                         @endforeach
 
@@ -139,7 +70,6 @@
                                 </table>
 
 
-                                @endif
 
 
 
