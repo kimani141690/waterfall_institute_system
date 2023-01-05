@@ -78,7 +78,7 @@ class student_reg_controller extends Controller
             $user->fname = $request->fname;
             $user->mname = $request->mname;
             $user->mobile = $request->mobile;
-            $user->address = $request->address;
+            $user->email = $request->email;
             $user->gender = $request->gender;
             $user->religion = $request->religion;
             $user->dob = date('Y-m-d',strtotime($request->dob));
@@ -157,7 +157,7 @@ class student_reg_controller extends Controller
                 $user->fname = $request->fname;
                 $user->mname = $request->mname;
                 $user->mobile = $request->mobile;
-                $user->address = $request->address;
+                $user->email = $request->email;
                 $user->gender = $request->gender;
                 $user->religion = $request->religion;
                 $user->dob = date('Y-m-d',strtotime($request->dob));
@@ -220,7 +220,7 @@ class student_reg_controller extends Controller
                 $user->fname = $request->fname;
                 $user->mname = $request->mname;
                 $user->mobile = $request->mobile;
-                $user->address = $request->address;
+                $user->email = $request->email;
                 $user->gender = $request->gender;
                 $user->religion = $request->religion;
                 $user->dob = date('Y-m-d',strtotime($request->dob));

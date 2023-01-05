@@ -93,9 +93,9 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>Address <span class="text-danger">*</span></h5>
+                                                    <h5>Email Address <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" name="address" class="form-control" required=""value="{{$edit_data['student']['address']}}">
+                                                        <input type="text" name="email" class="form-control" required=""value="{{$edit_data['student']['email']}}">
                                                     </div>
                                                 </div>
 
