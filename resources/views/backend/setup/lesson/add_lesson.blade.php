@@ -88,7 +88,7 @@
                                         <div class="mt-4">
                                             <h5>Start Time <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="time" id="start_time" class="block mt-1 w-full" name="start_time" :value="old('start_time')" required>
+                                                <input type="time" id="start_time" class="block mt-1 w-full" name="start_time" :value="old('start_time')" min="08:00:00" max="16:00:00" step="1800" required>
                                                 @error('start_time')
                                                 <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -99,7 +99,7 @@
                                         <div class="mt-4">
                                             <h5>End Time <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="time" id="end_time" class="block mt-1 w-full" name="end_time" :value="old('end_time')" required>
+                                                <input type="time" id="end_time" class="block mt-1 w-full" name="end_time" :value="old('end_time')" min="09:00:00" max="17:00:00" step="1800" required>
                                                 @error('end_time')
                                                 <span class="text-danger">{{ $message }}</span>
                                                 @enderror

@@ -42,8 +42,7 @@ use App\Http\Controllers\backend\setup\room_controller;
 use App\Http\Controllers\mpesa_controller;
 
 use App\Http\Controllers\backend\applications\student_applications_controller;
-
-
+use App\Http\Controllers\backend\setup\timetable_controller;
 use Laravel\Jetstream\Rules\Role;
 
 /*
@@ -392,8 +391,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         Route::get('salary/details/{id}', [employee_salary_controller::class, 'salary_details'])->name('employee.salary.details');
-    });
-}); // END MIDDLEWARE AUTH ROUTE
 
         Route::get('salary/details/{id}', [employee_salary_controller::class, 'salary_details'])->name('employee.salary.details');
 
@@ -423,7 +420,6 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('attendance/details/{date}', [employee_attendance_controller::class, 'attendance_details'])->name('employee.attendance.details');
     });
-
     Route::prefix('marks')->group(function () {
         // EMPLOYEE REGISTRATION ROUTES
 
@@ -466,7 +462,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('salary/update/increment/{id}', [employee_salary_controller::class, 'update_increment'])->name('update.increment.store');
 
     Route::post('salary/details/{id}', [employee_salary_controller::class, 'salary_details'])->name('employee.salary.details');
-});
+}); // END MIDDLEWARE AUTH ROUTE
 
 // MPESA FEE PAYMENT
 
@@ -487,6 +483,6 @@ Route::prefix('applications')->group(function () {
 
 
 
-
+Route::get('/timetable/pdf', [timetable_controller::class, 'createTimeTablePDF'])->name('timetable.pdf');
 
 // END MIDDLEWARE AUTH ROUTE
