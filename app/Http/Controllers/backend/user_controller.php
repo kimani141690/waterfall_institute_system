@@ -59,6 +59,14 @@ class user_controller extends Controller
 		Mail::to($user)->send(new AcceptanceLetter($user));
 	}
 
+	public function send_acceptance_letters(Request $req){
+		$students = $req->accepted;
+		foreach($students as $student){
+			$user = User::find($student);
+			Mail::to($user)->send(new AcceptanceLetter($user));
+		}
+	}
+
     public function user_edit($id){
 
         $edit_data = User::find($id);
