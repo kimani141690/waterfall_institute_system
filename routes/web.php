@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\dashboard_controller;
 use App\Http\Controllers\admin_controller;
+use App\Http\Controllers\backend\announcements\announcement_controller;
 use App\Http\Controllers\backend\user_controller;
 use App\Http\Controllers\backend\profile_controller;
 use App\Http\Controllers\backend\setup\student_course_controller;
@@ -73,15 +74,27 @@ Route::middleware([
 
 Route::get('/dashboard', [dashboard_controller::class, 'view_content'])->name('dashboard');
 
-
-
 Route::get('/admin/logout', [admin_controller::class, 'Logout'])->name('admin.logout');
 
 Route::get('/users/email/acceptance/{id}', [user_controller::class, 'send_acceptance_letter'])->name('user.email.acceptance');
 
 Route::group(['middleware' => 'auth'], function () {
 
+    //ANNOUNCEMENT ROUTES
 
+    Route::prefix('dashboard')->group(function () {
+        Route::get('announcements/view', [announcement_controller::class, 'view_announcements'])->name('announcements.view');
+    
+        Route::get('announcements/add', [announcement_controller::class, 'add_announcement'])->name('announcements.add');
+    
+        Route::post('announcements/store', [announcement_controller::class, 'store_announcement'])->name('store.announcement');
+    
+        Route::get('announcements/edit/{id}', [announcement_controller::class, 'edit_announcement'])->name('announcements.edit');
+    
+        Route::post('announcements/update/{id}', [announcement_controller::class, 'update_announcement'])->name('update.announcements');
+    
+        Route::get('announcements/delete/{id}', [announcement_controller::class, 'delete_announcement'])->name('announcements.delete');
+    });
 
     // USER MANAGEMENT ROUTES
 
@@ -481,7 +494,6 @@ Route::prefix('applications')->group(function () {
     Route::get('/view', [student_applications_controller::class, 'student_application_review'])->name('applications.view');
 
     Route::get('/applicant/details/{applicant_id}', [student_applications_controller::class, 'applicant_details'])->name('applicant.details');
-
 });
 
 

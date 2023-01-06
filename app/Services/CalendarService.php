@@ -12,6 +12,7 @@ class CalendarService
     public function generateCalendarData($week_days)
     {
         $calendar_data = [];
+        $lessons = [];
         $time_start = '08:00:00';
         $time_end = '17:00:00';
         $time_range = (new TimeService)->generateTimeRange($time_start, $time_end);
@@ -45,8 +46,7 @@ class CalendarService
                         ->join('student_years', 'course_units.year_id', '=', 'student_years.id')
                         ->join('rooms', 'lessons.room_id', '=', 'rooms.id')
                         ->select('lessons.weekday as weekday', 'users.name as lecturer_name', 'course_units.unit as unit_name', 'student_courses.name as course', 'student_years.name as year', 'rooms.name as room')
-                        ->where('lessons.lecturer_id', $lesson->lecturer_id)
-                        ->where('lessons.course_unit_id', $lesson->units_id)
+                        ->where('lessons.id', $lesson->id)
                         ->get();
 
                     array_push($calendar_data[$time_text], [

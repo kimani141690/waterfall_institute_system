@@ -55,7 +55,6 @@
                 @if (is_array($value))
                 <td rowspan="{{ $value['rowspan'] }}" class="align-middle text-center" style="background-color:#f0f0f0">
                     {{ $value['unit_name'] }}<br>
-                    {{ $value['course'] }}<br>
                     {{ $value['semester'] }}<br>
                     Lec: {{ $value['lecturer_name'] }}
                 </td>

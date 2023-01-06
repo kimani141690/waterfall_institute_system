@@ -77,8 +77,6 @@
                                                     <option value="3">Wednesday</option>
                                                     <option value="4">Thursday</option>
                                                     <option value="5">Friday</option>
-                                                    <option value="6">Saturday</option>
-                                                    <option value="7">Sunday</option>
                                                 </select>
                                             </div>
 
