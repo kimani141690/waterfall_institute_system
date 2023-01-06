@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\dashboard_controller;
 use App\Http\Controllers\admin_controller;
+use App\Http\Controllers\backend\announcements\announcement_controller;
 use App\Http\Controllers\backend\user_controller;
 use App\Http\Controllers\backend\profile_controller;
 use App\Http\Controllers\backend\setup\student_course_controller;
@@ -42,8 +43,7 @@ use App\Http\Controllers\backend\setup\room_controller;
 use App\Http\Controllers\mpesa_controller;
 
 use App\Http\Controllers\backend\applications\student_applications_controller;
-
-
+use App\Http\Controllers\backend\setup\timetable_controller;
 use Laravel\Jetstream\Rules\Role;
 
 /*
@@ -74,15 +74,27 @@ Route::middleware([
 
 Route::get('/dashboard', [dashboard_controller::class, 'view_content'])->name('dashboard');
 
-
-
 Route::get('/admin/logout', [admin_controller::class, 'Logout'])->name('admin.logout');
 
-Route::get('/users/email/acceptance', [user_controller::class, 'send_acceptance_letter'])->name('user.email.acceptance');
+Route::get('/users/email/acceptance/{id}', [user_controller::class, 'send_acceptance_letter'])->name('user.email.acceptance');
 
 Route::group(['middleware' => 'auth'], function () {
 
+    //ANNOUNCEMENT ROUTES
 
+    Route::prefix('dashboard')->group(function () {
+        Route::get('announcements/view', [announcement_controller::class, 'view_announcements'])->name('announcements.view');
+    
+        Route::get('announcements/add', [announcement_controller::class, 'add_announcement'])->name('announcements.add');
+    
+        Route::post('announcements/store', [announcement_controller::class, 'store_announcement'])->name('store.announcement');
+    
+        Route::get('announcements/edit/{id}', [announcement_controller::class, 'edit_announcement'])->name('announcements.edit');
+    
+        Route::post('announcements/update/{id}', [announcement_controller::class, 'update_announcement'])->name('update.announcements');
+    
+        Route::get('announcements/delete/{id}', [announcement_controller::class, 'delete_announcement'])->name('announcements.delete');
+    });
 
     // USER MANAGEMENT ROUTES
 
@@ -392,8 +404,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         Route::get('salary/details/{id}', [employee_salary_controller::class, 'salary_details'])->name('employee.salary.details');
-    });
-}); // END MIDDLEWARE AUTH ROUTE
 
         Route::get('salary/details/{id}', [employee_salary_controller::class, 'salary_details'])->name('employee.salary.details');
 
@@ -423,7 +433,6 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('attendance/details/{date}', [employee_attendance_controller::class, 'attendance_details'])->name('employee.attendance.details');
     });
-
     Route::prefix('marks')->group(function () {
         // EMPLOYEE REGISTRATION ROUTES
 
@@ -466,7 +475,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('salary/update/increment/{id}', [employee_salary_controller::class, 'update_increment'])->name('update.increment.store');
 
     Route::post('salary/details/{id}', [employee_salary_controller::class, 'salary_details'])->name('employee.salary.details');
-});
+}); // END MIDDLEWARE AUTH ROUTE
 
 // MPESA FEE PAYMENT
 
@@ -484,10 +493,11 @@ Route::prefix('applications')->group(function () {
 
     Route::get('/view', [student_applications_controller::class, 'student_application_review'])->name('applications.view');
 
+    Route::get('/applicant/details/{applicant_id}', [student_applications_controller::class, 'applicant_details'])->name('applicant.details');
 });
 
 
 
-
+Route::get('/timetable/pdf', [timetable_controller::class, 'createTimeTablePDF'])->name('timetable.pdf');
 
 // END MIDDLEWARE AUTH ROUTE

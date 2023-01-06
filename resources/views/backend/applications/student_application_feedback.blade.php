@@ -232,9 +232,9 @@
         </a>
         <ul>
             <li><a href="#about">About us</a></li>
-            <li><a href="#">Student Application</a></li>
+            <li><a href="{{ route('student.applications')}}">Student Application</a></li>
             <li><a href="#">Staff Appliation</a></li>
-            <li><a href="#" class="btn">LOGIN</a></li>
+            <li><a href="{{ route('login')}}" class="btn">LOGIN</a></li>
         </ul>
     </header>
 

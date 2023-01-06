@@ -5,7 +5,7 @@ We are happy to inform you that you have been accepted to the prestigious Waterf
 Please use the credentials below to login to your account.
 
 <strong>Username: </strong> {{ $user->email }} <br>
-<strong>Passcode: </strong>5429
+<strong>Passcode: </strong> {{ $user->code }}
 
 The fees summary for this year is also outlined below.
 <x-mail::table>

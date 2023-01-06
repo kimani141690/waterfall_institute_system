@@ -23,14 +23,30 @@ $route = Route::current()->getName();
 
     <!-- sidebar menu-->
     <ul class="sidebar-menu" data-widget="tree">
-
-      <li class="{{ ($route == 'dashboard')?'active':'' }}">
-        <a href="{{route('dashboard')}}">
+      @can('lecStudentView', App\Models\User::class)
+      <li class="{{ ($route == 'announcements.view')?'active':'' }}">
+        <a href="{{route('announcements.view')}}">
           <i data-feather="home"></i>
           <span>Dashboard</span>
         </a>
       </li>
-      @if(Auth::user()->role=='admin')
+      @endcan
+      @can('adminView', App\Models\User::class)
+      <li class="treeview {{ ($prefix == '/dashboard')?'active':'' }}">
+        <a href="#">
+          <i data-feather="home"></i>
+          <span>Dashboard</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{{route('dashboard')}}"><i class="ti-more"></i>Home</a></li>
+          <li><a href="{{route('announcements.view') }}"><i class="ti-more"></i>Announcements</a></li>
+        </ul>
+      </li>
+      @endcan
+      @can('adminView', App\Models\User::class)
       <li class="treeview {{ ($prefix == '/users')?'active':'' }}">
         <a href="#">
           <i data-feather="folder-plus"></i>
@@ -44,7 +60,7 @@ $route = Route::current()->getName();
           <li><a href="{{route('user.add') }}"><i class="ti-more"></i>Add User</a></li>
         </ul>
       </li>
-      @endif
+      @endcan
 
       <li class="treeview {{ ($prefix == '/profile')?'active':'' }}">
         <a href="#">
@@ -67,18 +83,29 @@ $route = Route::current()->getName();
           </span>
         </a>
         <ul class="treeview-menu">
+          @can('adminView', App\Models\User::class)
           <li><a href="{{route('student.course.view')}}"><i class="ti-more"></i>Student Course</a></li>
           <li><a href="{{route('student.unit.view')}}"><i class="ti-more"></i>Student Unit</a></li>
           <li><a href="{{route('student.year.view')}}"><i class="ti-more"></i>Student Year</a></li>
+          @endcan
+
           <li><a href="{{route('student.group.view')}}"><i class="ti-more"></i>Student Group</a></li>
+
           <li><a href="{{route('student.shift.view')}}"><i class="ti-more"></i>Student Shift</a></li>
+
+          @can('lecAdminView', App\Models\User::class)
           <li><a href="{{route('fee.category.view')}}"><i class="ti-more"></i>Fee Category</a></li>
           <li><a href="{{route('fee.amount.view')}}"><i class="ti-more"></i>Fee Category Amount</a></li>
           <li><a href="{{route('exam.type.view')}}"><i class="ti-more"></i>Exam Type</a></li>
+          @endcan
+
+          @can('adminView', App\Models\User::class)
           <li><a href="{{route('assign.unit.view')}}"><i class="ti-more"></i>Assign Unit</a></li>
           <li><a href="{{route('designation.view')}}"><i class="ti-more"></i>Designation</a></li>
-            <li><a href="{{route('room.view')}}"><i class="ti-more"></i>Room</a></li>
-            <li><a href="{{route('lesson.view')}}"><i class="ti-more"></i>Lessons</a></li>
+          <li><a href="{{route('room.view')}}"><i class="ti-more"></i>Room</a></li>
+          @endcan
+
+          <li><a href="{{route('lesson.view')}}"><i class="ti-more"></i>Lessons</a></li>
         </ul>
       </li>
 
@@ -90,15 +117,21 @@ $route = Route::current()->getName();
           </span>
         </a>
         <ul class="treeview-menu">
+          @can('adminView', App\Models\User::class)
           <li><a href="{{route('student.registration.view')}}"><i class="ti-more"></i>Student Registration</a></li>
+          @endcan
+          @can('lecAdminView', App\Models\User::class)
           <li><a href="{{route('student.attendance.view')}}"><i class="ti-more"></i>Student Attendance</a></li>
           <li><a href="{{route('roll.generate.view')}}"><i class="ti-more"></i>Roll Generation</a></li>
+          @endcan
+
           <li><a href="{{route('registration.fee.view')}}"><i class="ti-more"></i>Registration Fee</a></li>
           <li><a href="{{route('semester.fee.view')}}"><i class="ti-more"></i>Semester Fee</a></li>
           <li><a href="{{route('exam.fee.view')}}"><i class="ti-more"></i>Exam Fee</a></li>
 
         </ul>
       </li>
+      @can('lecAdminView', App\Models\User::class)
       <li class="treeview {{ ($prefix == '/marks')?'active':'' }}">
         <a href="#">
           <i data-feather="check-square"></i> <span>Marks Management</span>
@@ -113,7 +146,9 @@ $route = Route::current()->getName();
 
         </ul>
       </li>
+      @endcan
 
+      @can('adminView', App\Models\User::class)
       <li class="treeview {{ ($prefix == '/employee')?'active':'' }}">
         <a href="#">
           <i data-feather="users"></i> <span>Employee Management</span>
@@ -129,7 +164,9 @@ $route = Route::current()->getName();
 
         </ul>
       </li>
+      @endcan
 
+      @can('adminView', App\Models\User::class)
       <li class="treeview {{ ($prefix == '/employee')?'active':'' }}">
         <a href="#">
           <i data-feather="log-in"></i> <span>Admissions</span>
@@ -138,31 +175,31 @@ $route = Route::current()->getName();
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{{route('user.email.acceptance')}}"><i class="ti-more"></i>Send Acceptance Letter</a></li>
           <li><a href="{{route('applications.view')}}"><i class="ti-more"></i>View Applications</a></li>
 
 
         </ul>
       </li>
+      @endcan
+
+      @can('onlyStudent', App\Models\User::class)
       <li class="treeview {{ ($prefix == '/mpesa')?'active':'' }}">
         <a href="#">
-        <li><a href="{{route('mpesa.payment.view')}}"><i class="ti-wallet"></i>Make Fee Payment</a></li>
+      <li><a href="{{route('mpesa.payment.view')}}"><i class="ti-wallet"></i>Make Fee Payment</a></li>
 
-        </a>
-        <ul class="treeview-menu">
-
-
-        </ul>
+      </a>
+      <ul class="treeview-menu">
+      </ul>
       </li>
-
+      @endcan
 
 
       <li class="header nav-small-cap">---------------------------------------------------------</li>
 
-     
 
 
-        
+
+
       <li>
         <a href="{{ route('admin.logout') }}">
           <i data-feather="lock"></i>
